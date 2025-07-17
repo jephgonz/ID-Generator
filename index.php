@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ID Generator in PHP</title>
+        <title>SP ID Generator</title>
 		<link href="img/favicon.ico" rel="icon" type="image">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/datepicker.css">
@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 										<div class="col-sm-3">
 											<label>Font size</label>
 											<input type = "number" class = "form-control" placeholder="Font Size" name="fontsize" value="<?php echo @$_POST['fontsize']; ?>">
-											<small class="form-text text-muted">Adjust the value if the text exceeded</small>
+											<small class="form-text text-muted">(Default 70) Adjust the value if the text exceeded</small>
 										</div>
 									</div>
 									<div class='row'>
@@ -55,7 +55,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 										<div class="col-sm-3">
 											<label>Font size</label>
 											<input type = "number" class = "form-control" placeholder="Font Size" name="fontsize2" value="<?php echo @$_POST['fontsize2']; ?>">
-											<small class="form-text text-muted">Adjust the value if the text exceeded</small>
+											<small class="form-text text-muted">(Default 35) Adjust the value if the text exceeded</small>
 										</div>
 										<div class = "col-sm-3">
 											<label>Employee Number</label>
@@ -103,6 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								<!--<a class="btn btn-primary submitBtn" style="width:210px; margin:5px 0;" href="download.php?file1=<?php echo @str_replace(" ","",strtolower($text));?>.png&file2=<?php echo @str_replace(" ","",strtolower($text));?>back.png">Download ID Card</a>
 								-->
 								<p>Please review changes below</p>
+								<p><i>(If you can't download the ID, right click the ID image below and click "Save image as")</i></p>
 								<?php
 								if($_SERVER['REQUEST_METHOD'] == 'POST'){
 									echo '<img src="'.$img2.'" width="500">';

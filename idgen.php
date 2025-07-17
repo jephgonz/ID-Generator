@@ -37,8 +37,8 @@ $img4 = 'final2.png';            // path to temporary image
 //$birthday = strtoupper($_POST['dateinput']);
 //list($monthofdate, $dayofdate, $yearofdate) = explode(' ', $birthday);
 
-$img2 = $iddir.'/'.strtolower(preg_replace('#[^0-9a-zA-z]#','',$text)).'.png';
-$img3 = $iddir.'/'.strtolower(preg_replace('#[^0-9a-zA-z]#','',$text)).'back.png';
+$img2 = $iddir.'/'.strtolower(preg_replace('#[^0-9a-zA-z.]#','',$text)).'.png';
+$img3 = $iddir.'/'.strtolower(preg_replace('#[^0-9a-zA-z.]#','',$text)).'back.png';
 
 //creates 'cards' folder if not exists
 if(!file_exists($iddir)){
