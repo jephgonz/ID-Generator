@@ -24,8 +24,10 @@ if(!empty($_GET['file1'])){
         //release memory
         imagedestroy($merged_image);
         unlink('cards/id.png');
+        unlink($filePath);
         exit;
     }else{
         echo 'The File '.$fileName.' does not exist.';
     }
-}?>
+}
+?>

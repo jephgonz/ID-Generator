@@ -142,4 +142,5 @@ imagedestroy($im2);
 unlink('final.png');//Remove Temporary Background Image
 unlink('final2.png');
 unlink('tmp.jpg');//Remove Temporary Profile Image
+unlink('img/blend.jpg');
 ?>

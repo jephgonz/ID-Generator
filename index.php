@@ -1,19 +1,38 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-	include_once("idgen.php");
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	if(!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK){
+    	echo "<script>alert('Error: No image uploaded or upload failed.');</script>";
+	}else{
+    $imageTmp = $_FILES['image']['tmp_name'];
+
+    //Validate file is a real image
+    $imageInfo = getimagesize($imageTmp);
+    
+    if($imageInfo === false) {
+    	echo "<script>alert('Error: Uploaded file is not a valid image.');</script>";
+    }elseif($imageInfo[2] !== IMAGETYPE_JPEG) {
+    	echo "<script>alert('Error: Image must be a JPEG file.');</script>";
+    }else{
+    	// Everything looks good, now include logic
+    	include_once("idgen.php");
+    }
+  }
 }
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>SP ID Generator</title>
-		<link href="img/sp.ico" rel="icon" type="image">
+		<link href="img/SP.ico" rel="icon" type="image">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/datepicker.css">
 		<link rel="stylesheet" href="css/style.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/datepicker.js"></script>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
     </head>
 		<body>
 			<div class="topmost container" style="margin-top:3em;">
@@ -43,8 +62,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 										</div>
 										<div class="col-sm-3">
 											<label>Font size</label>
-											<input type = "number" class = "form-control" placeholder="Font Size" name="fontsize" value="<?php echo @$_POST['fontsize']; ?>">
-											<small class="form-text text-muted">(Default 70) Adjust the value if the text exceeded</small>
+											<!--<input type = "number" class = "form-control" placeholder="Font Size" name="fontsize" value="<?php echo @$_POST['fontsize']; ?>">-->
+											<input type = "number" class = "form-control" placeholder="Font Size" name="fontsize" value="70">
+											<small class="form-text text-muted">Adjust the value if the text exceeded</small>
 										</div>
 									</div>
 									<div class='row'>
@@ -54,8 +74,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 										</div>
 										<div class="col-sm-3">
 											<label>Font size</label>
-											<input type = "number" class = "form-control" placeholder="Font Size" name="fontsize2" value="<?php echo @$_POST['fontsize2']; ?>">
-											<small class="form-text text-muted">(Default 35) Adjust the value if the text exceeded</small>
+											<!--<input type = "number" class = "form-control" placeholder="Font Size" name="fontsize2" value="<?php echo @$_POST['fontsize2']; ?>">-->
+											<input type = "number" class = "form-control" placeholder="Font Size" name="fontsize2" value="35">
+											<small class="form-text text-muted">Adjust the value if the text exceeded</small>
 										</div>
 										<div class = "col-sm-3">
 											<label>Employee Number</label>
@@ -106,10 +127,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								<p><i>(If you can't download the ID, right click the ID image below and click "Save image as")</i></p>
 								<?php
 								if($_SERVER['REQUEST_METHOD'] == 'POST'){
-									echo '<img src="'.$img2.'" width="500">';
-									//echo '<img src="'.$img3.'" width="500">';
+									if(isset($img2)){
+										echo'<img src="'.$img2.'" width="500">';
+										//echo '<img src="'.$img3.'" width="500">';
+									}else{
+										echo"<img src='id.png' alt='Fallback Image' width='500'/>";
+									}
 								}else{
-									echo "<img src='img/id.png' alt='' class='resultimg' width='500'/>";
+									echo "<img src='id.png' alt='' class='resultimg' width='500'/>";
 									//echo "<img src='img/id2.png' alt='' class='resultimg' width='500'/>";
 								}
 								?>
