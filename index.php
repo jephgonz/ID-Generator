@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		<script src="js/datepicker.js"></script>
     </head>
 		<body>
-			<div class="topmost container" style="margin-top:8em;">
+			<div class="topmost container" style="margin-top:3em;">
 				<div class="col-md-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 											<label>Employee Number</label>
 											<input type = "number" class = "form-control" placeholder="Employee Number" name="empnumber" value="<?php echo @$_POST['empnumber']; ?>">
 										</div>
-									</div>
+									<!--</div>
 										<div class = "form-group">
 											<label>Birth Date</label>
 											<input type="text" readonly name="dateinput" class="datepicker-here form-control" placeholder="Your Birthday" data-language="en" value="<?php echo @$_POST['dateinput'];;?>">
@@ -81,9 +81,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 										<div class = "form-group">
 											<label>Contact Number</label>
 											<input type = "number" class = "form-control" placeholder="Contact Number" name="number" value="<?php echo @$_POST['number']; ?>">
-										</div>
+										</div>-->
 										<div class = "form-group">
 											<input type = "submit" class = "btn btn-primary btn-block" name="process" value="Generate ID">
+									</div>
 								</form>
 							</div>
 						</div>
@@ -98,21 +99,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 						</div>
 						<div class="panel-body" style="min-height:230px;">
 							<center>
-								<a class="btn btn-primary submitBtn" style="width:210px; margin:5px 0;" href="download.php?file1=<?php echo @str_replace(" ","",strtolower($nickname));?>.png&file2=<?php echo @str_replace(" ","",strtolower($nickname));?>back.png">Download ID Card</a>
+								<a class="btn btn-primary submitBtn" style="width:210px; margin:5px 0;" href="download.php?file1=<?php echo @str_replace(" ","",strtolower($text));?>.png">Download ID Card</a>
+								<!--<a class="btn btn-primary submitBtn" style="width:210px; margin:5px 0;" href="download.php?file1=<?php echo @str_replace(" ","",strtolower($text));?>.png&file2=<?php echo @str_replace(" ","",strtolower($text));?>back.png">Download ID Card</a>
+								-->
 								<p>Please review changes below</p>
 								<?php
 								if($_SERVER['REQUEST_METHOD'] == 'POST'){
 									echo '<img src="'.$img2.'" width="500">';
-									echo '<img src="'.$img3.'" width="500">';
+									//echo '<img src="'.$img3.'" width="500">';
 								}else{
 									echo "<img src='img/id.png' alt='' class='resultimg' width='500'/>";
-									echo "<img src='img/id2.png' alt='' class='resultimg' width='500'/>";
+									//echo "<img src='img/id2.png' alt='' class='resultimg' width='500'/>";
 								}
 								?>
 							</center>
 						</div>
 					</div>
 				</div>
+				<br>
+					<center>
+						<p>2022 | Made by Jephthah Ruel G. Millan, IT, Office of Councilor Atty. J. Melchor B. Quitain Jr. | All rights reserved.</p>
+					</center>
+				<br>
 			</div>
 		</body>	
 </html>

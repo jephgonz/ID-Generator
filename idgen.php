@@ -5,20 +5,20 @@ $nickname = ucwords($_POST['nickname']); // Participant nickName
 $text = ucwords($_POST['fullname']); // Participant Name
 $position = ucwords($_POST['position']); // Position
 $idnumber = strval($_POST['empnumber']);
-$address1 = ucwords($_POST['address1']); // ADDRESS
-$name2 = ucwords($_POST['name2']);
-$address2 = ucwords($_POST['address2']); // ADDRESS
-$number = strval($_POST['number']);
+//$address1 = ucwords($_POST['address1']); // ADDRESS
+//$name2 = ucwords($_POST['name2']);
+//$address2 = ucwords($_POST['address2']); // ADDRESS
+//$number = strval($_POST['number']);
 $fontsize = 70;
 $fontsize2 = 35;
 $fontsize = $_POST['fontsize'];
 $fontsize2 = $_POST['fontsize2'];
 $profileimage = 'img/blend.jpg';   // QT Code Image
 $font_size = 13;               // Font size is in pixels.
-$font_file = 'arialbd.ttf';         // path to your font file
-$font_file_pant = 'PointPanther DEMO.otf';
-$font_file_arial = 'ariblk.ttf';
-$font_file_keep = 'KeepCalm-Medium.ttf';
+$font_file = 'img/arialbd.ttf';         // path to your font file
+$font_file_pant = 'img/PointPantherDEMO.otf';
+$font_file_arial = 'img/ariblk.ttf';
+$font_file_keep = 'img/KeepCalm-Medium.ttf';
 
 // path & name of the image to save on server
 $image_file = $_FILES["image"];
@@ -34,11 +34,11 @@ move_uploaded_file(
 
 $img = 'final.png';            // path to temporary image
 $img4 = 'final2.png';            // path to temporary image
-$birthday = strtoupper($_POST['dateinput']);
-list($monthofdate, $dayofdate, $yearofdate) = explode(' ', $birthday);
+//$birthday = strtoupper($_POST['dateinput']);
+//list($monthofdate, $dayofdate, $yearofdate) = explode(' ', $birthday);
 
-$img2 = $iddir.'/'.strtolower(preg_replace('#[^0-9a-zA-z]#','',$nickname)).'.png';
-$img3 = $iddir.'/'.strtolower(preg_replace('#[^0-9a-zA-z]#','',$nickname)).'back.png';
+$img2 = $iddir.'/'.strtolower(preg_replace('#[^0-9a-zA-z]#','',$text)).'.png';
+$img3 = $iddir.'/'.strtolower(preg_replace('#[^0-9a-zA-z]#','',$text)).'back.png';
 
 //creates 'cards' folder if not exists
 if(!file_exists($iddir)){
@@ -106,36 +106,36 @@ $fontSize_back = 35 * $scale2;
 $text_box_pos = imagettfbbox($fontSize_pos,0,$font_file_keep,$position);
 $text_box_nick = imagettfbbox(150,0,$font_file_pant,$nickname);
 $text_box_name = imagettfbbox($fontSize_name,0,$font_file_pant,$text);
-$text_box_back = imagettfbbox($fontSize_back,0,$font_file,$name2);
-$text_box_back2 = imagettfbbox($fontSize_back,0,$font_file,$address2);
-$text_box_back3 = imagettfbbox(30,0,$font_file,$number);
+//$text_box_back = imagettfbbox($fontSize_back,0,$font_file,$name2);
+//$text_box_back2 = imagettfbbox($fontSize_back,0,$font_file,$address2);
+//$text_box_back3 = imagettfbbox(30,0,$font_file,$number);
 $text_width_pos = $text_box_pos[2]-$text_box_pos[0];
 $text_width_nick = $text_box_nick[2]-$text_box_nick[0];
 $text_width_name = $text_box_name[2]-$text_box_name[0];
-$text_width_back = $text_box_back[2]-$text_box_back[0];
-$text_width_back2 = $text_box_back2[2]-$text_box_back2[0];
-$text_width_back3 = $text_box_back3[2]-$text_box_back3[0];
+//$text_width_back = $text_box_back[2]-$text_box_back[0];
+//$text_width_back2 = $text_box_back2[2]-$text_box_back2[0];
+//$text_width_back3 = $text_box_back3[2]-$text_box_back3[0];
 $image_width = imagesx($im);
 $x_pos = round(($image_width/2) - ($text_width_pos/2));
 $x_nick = round(($image_width/2) - ($text_width_nick/2));
 $x_name = round(($image_width/2) - ($text_width_name/2));
-$x_back = round(($image_width/2) - ($text_width_back/2));
-$x_back2 = round(($image_width/2) - ($text_width_back2/2));
-$x_back3 = round(($image_width/2) - ($text_width_back3/2));
+//$x_back = round(($image_width/2) - ($text_width_back/2));
+//$x_back2 = round(($image_width/2) - ($text_width_back2/2));
+//$x_back3 = round(($image_width/2) - ($text_width_back3/2));
 
 
 imagettftext($im, 33, 0, 650, 1125, $textcolor_white, $font_file_arial, $idnumber); // Add ID Number to image:
 imagettftext($im, 150, 0, $x_nick, 915, $textcolor_white, $font_file_pant, $nickname); // Add nickname to image:
 imagettftext($im, $fontSize_name, 0, $x_name, 1000, $textcolor_white, $font_file_pant, $text); // Add name to image:
 imagettftext($im, $fontSize_pos, 0, $x_pos, 1065, $textcolor_white, $font_file_keep, $position); // Add position to image:
-imagettftext($im2, 30, 0, 320, 140, $textcolor, $font_file, $birthday); // Add Birthday to image:
-imagettftext($im2, $fontSize_back, 0, 320, 233, $textcolor, $font_file, $address1);
-imagettftext($im2, $fontSize_back, 0, $x_back, 520, $textcolor, $font_file, $name2);
-imagettftext($im2, $fontSize_back, 0, $x_back2, 730, $textcolor, $font_file, $address2);
-imagettftext($im2, 30, 0, $x_back3, 880, $textcolor, $font_file, $number);
+//imagettftext($im2, 30, 0, 320, 140, $textcolor, $font_file, $birthday); // Add Birthday to image:
+//imagettftext($im2, $fontSize_back, 0, 90, 280, $textcolor, $font_file, $address1);
+//imagettftext($im2, $fontSize_back, 0, $x_back, 520, $textcolor, $font_file, $name2);
+//imagettftext($im2, $fontSize_back, 0, $x_back2, 730, $textcolor, $font_file, $address2);
+//imagettftext($im2, 30, 0, $x_back3, 880, $textcolor, $font_file, $number);
 
 imagepng($im, $img2, 9); // save the image on server
-imagepng($im2, $img3, 9); // save the image on server
+//imagepng($im2, $img3, 9); // save the image on server
 imagedestroy($im); // Destroy image in memory to free-up resources:
 imagedestroy($im2);
 
