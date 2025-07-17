@@ -27,7 +27,10 @@ if(!empty($_GET['file1'])){
         unlink($filePath);
         exit;
     }else{
-        echo 'The File '.$fileName.' does not exist.';
+        echo "<script>
+        alert('Please make sure to fill out all required fields in the ID generation form.');
+        window.location.href = 'index.php';
+        </script>";
     }
 }
 ?>
